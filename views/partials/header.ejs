@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <title> Expense Management </title>
+  <style>
+    head{
+      width: 100%;
+      height: 50px;
+      position: relative;
+      margin-top: 0;
+    }
+    body {
+      padding: 0px;
+      margin-top: 60px;
+      margin-bottom: 28px;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+      outline: 0;
+      font-family: 'Nunito', sans-serif;
+      color: #9ab3c9;
+      background-color: rgb(122, 202, 255);
+    }
+    form {
+      color:rgb(0, 0, 0);
+      max-width: 300px;
+      margin: 0px auto;
+      padding: 10px 10px;
+      background: #c7ffda77;
+      border-radius: 4px;
+      text-emphasis-color: rgb(0, 0, 0);
+    }
+    h1 {
+      margin: 0 0 20px 0;
+      text-align: center;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="url"],
+    textarea,
+    select {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      font-size: 16px;
+      height: auto;
+      margin: 0;
+      outline: 0;
+      padding: 05px;
+      width: 100%;
+      background-color: #e8eeef;
+      color: #000000;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+      margin-bottom: 20px;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin: 0 4px 8px 0;
+    }
+    select {
+      padding: 6px;
+      height: 32px;
+      border-radius: 2px;
+    }
+    button {
+      padding: 19px 39px 18px 39px;
+      color: #FFF;
+      background-color: #4bc970;
+      font-size: 18px;
+      text-align: center;
+      font-style: normal;
+      border-radius: 3px;
+      width: 100%;
+      border: 1px solid #3ac162;
+      border-width: 1px 1px 3px;
+      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+      margin-bottom: 10px;
+    }
+    fieldset {
+      margin: 5px 5px 10px 5px;
+      border: none;
+    }
+    legend {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    label.light {
+      font-weight: 300;
+      display: inline;
+    }
+    *,
+    *:before,
+    *:after {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .navform {
+      max-width: 300px;
+      margin: 0px 10px;
+      padding: 0 0 0 0;
+      background: #f4f7f8;
+      border-radius: 8px;
+    }
+    .number {
+      background-color: #5fcf80;
+      color: #fff;
+      height: 30px;
+      width: 30px;
+      display: inline-block;
+      font-size: 0.8em;
+      margin-right: 4px;
+      line-height: 30px;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-radius: 100%;
+    }
+    .capitilize {
+      text-transform: capitalize;
+    }
+    .float-container {
+      padding: 20px;
+    }
+    .float-child {
+      width: 50%;
+      float: left;
+      padding: 20px;
+      opacity: 0.8;
+      border-radius: 10px;
+      max-width: 750px;
+      max-height: 300px;
+      text-emphasis-color: wheat;
+    }
+    .accountBtn,.transaction{
+      margin: 0 0 0 0;
+      padding: 0 4px 0 4px;
+      color: #FFF;
+      background-color: #4bc970;
+      font-size: 18px;
+      text-align: center;
+      font-style: normal;
+      border-radius: 2px;
+      width: 100%;
+      border: 1px solid #3ac162;
+      border-width: 1px 1px 3px;
+      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+      margin-bottom: 10px;
+    }
+
+    @media screen and (min-width: 480px) {
+      form {
+        max-width: 480px;
+      }
+    }
+  </style>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('ifYes').style.display = 'none';
+      document.getElementById('ifNo').style.display = 'none';
+    }
+    function yesnoCheck() {
+      if (document.getElementById('incomeCheck').checked) {
+        document.getElementById('incomeDrop').style.display = 'block';
+        document.getElementById('expenseDrop').style.display = 'none';
+        document.getElementById('transferDrop').style.display = 'none';
+        document.getElementById('salary').style.display = 'none';
+      }
+      else if (document.getElementById('expenseCheck').checked) {
+        document.getElementById('expenseDrop').style.display = 'block';
+        document.getElementById('transferDrop').style.display = 'none';
+        document.getElementById('incomeDrop').style.display = 'none';
+      }
+      else if (document.getElementById('transferCheck').checked) {
+        document.getElementById('transferDrop').style.display = 'block';
+        document.getElementById('expenseDrop').style.display = 'none';
+        document.getElementById('incomeDrop').style.display = 'none';
+      }
+    }
+  </script>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="">ExpenseManager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/user/">Home <span class="sr-only">(current)</span></a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/account">Accounts</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/account/add">addAccount</a></form>
+          </li> -->
+
+        </ul>
+        <form method="get" class="navform" action="/user/logout"><a href=""><button
+              class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Logout</button></a> </form>
+      </div>
+    </nav>
+  </header>
+</head>
+<body>

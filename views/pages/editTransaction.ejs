@@ -1,0 +1,84 @@
+<%- include ("../partials/header") %>
+
+    <!--  Add transaction form  -->
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/transaction/editTransaction/id/<%= transactionId %>" method="POST">
+                <h1> Add Transaction </h1>
+
+                <!-- add transaction detail -->
+                <fieldset>
+                    <!-- <legend><span class="number">2</span> Transaction Details:-></legend> -->
+                    <br>
+                    <div>
+                        <!--   div for contain transaction type -->
+                        <div class="form-inline">
+                            <label for="Transaction">Transaction Type:</label>
+                        </div>
+                  
+                        <% if (transaction.type === "income") { %>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="incomeRadio" value="Income" checked
+                                    required />
+                                <label for="income">Income</label>
+                            </div>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="expenseRadio" value="Expense"
+                                    required />
+                                <label for="expense">Expense</label>
+                            </div>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="transferRadio" value="Account"
+                                    required />
+                                <label for="accountTransfer">AccountTransfer</label>
+                            </div>
+
+                        <% } else if (transaction.type === "expense") { %>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="incomeRadio" value="Income"
+                                    required />
+                                <label for="income">Income</label>
+                            </div>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="expenseRadio" value="Expense" checked
+                                    required />
+                                <label for="expense">Expense</label>
+                            </div>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="transferRadio" value="Account"
+                                    required />
+                                <label for="accountTransfer">AccountTransfer</label>
+                            </div>
+
+                        <% } else if (transaction.type === "account") { %>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="incomeRadio" value="Income"
+                                    required />
+                                <label for="income">Income</label>
+                            </div>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="expenseRadio" value="Expense"
+                                    required />
+                                <label for="expense">Expense</label>
+                            </div>
+                            <div class="form-inline">
+                                <input type="radio"  name="transType" id="transferRadio" value="Account" checked
+                                    required />
+                                <label for="accountTransfer">AccountTransfer</label>
+                            </div>
+
+                        <% } %>
+                        
+                    </div>
+                    <br>
+
+                    <label for="discription">Discription:</label>
+                    <textarea id="discription" name="description" required><%= transaction.description %></textarea>
+                    <label for="amount"> Amount</label>
+                    <input type="text" id="amount" pattern="[0-9]*" name="amount" value="<%= transaction.amount %>" required>
+                </fieldset>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <%- include ("../partials/footer")%>

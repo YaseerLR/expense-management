@@ -1,0 +1,158 @@
+<%- include ("../partials/header")%>
+
+  <div class="container text-white">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+      <label class="text-dark" for="balance">Balance : <%= balance %></label>
+
+      <a class="navbar-brand">Transaction Details</a>
+
+      <div class="row">
+        <div class="col-sm">
+          <form class="navform" method="GET" action="/account/addMember/accountId/<%= accountId %>"><a href=""><button
+            class="transaction btn btn-outline-warning my-2 my-sm-0" type="submit">Add Member</button></a></form>
+        </div>
+
+        <div class="">
+          <form class="navform" method="GET" action="/transaction/addTransaction/id/<%= accountId %>"><a href=""><button
+            class="transaction btn btn-outline-warning my-2 my-sm-0" type="submit">Add Transaction</button></a></form>
+        </div>
+      </div>
+      
+    </nav>
+
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-7 col-xl-8">
+        <table class="table" style="width: 100%; margin: auto; background-color: rgba(34, 189, 255, 0.529);">
+          <thead class="thead-dark">
+
+            <h1 style="text-decoration: underline;"> Transactions</h1>
+            <tr>
+              <th scope="col" name="refId">TransactionID</th>
+              <th scope="col" name="typeCategory">Type</th>
+              <th scope="col" name="amount">Amount</th>
+              <th scope="col" name="action">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for ( let i=0; i < transaction.length; i++) { %>
+              <tr>
+                <td>
+                  <%= transaction[i].account %>
+                </td>
+                <td>
+                  <%= transaction[i].type %>
+                </td>
+                <td>
+                  <%= transaction[i].amount %>
+                </td>
+                <td>
+                  <div class="row">
+                    <div class="col-sm">
+                      <button class="accountBtn" value="" id="updateBtn"><a
+                          href="/transaction/editTransaction/<%= transaction[i]._id %>">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-pen" viewBox="0 0 16 16">
+                            <path
+                              d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                          </svg></a>
+                      </button>
+                    </div>
+                    <div class="col-sm">
+                      <button class="accountBtn" value="" id="deleteBtn"> <a
+                          href="/transaction/deleteTransaction/<%= transaction[i]._id %>">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg></a>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- mamber's code will be here. -->
+
+      <div class="col-lg-2 col-xl-3">
+        <table class="table text-center" style="width: 80%; margin: auto; background-color: rgba(34, 189, 255, 0.529);">
+          <thead class="thead-dark">
+           
+
+              <h1 style="text-decoration: underline;"> Members</h1>
+              <tr>
+                <th scope="col" name="refId">memberName</th>
+                <th scope="col" name="action">&times</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% for (let j=0; j< members.length ; j++) {%>
+                <td>
+                  <%= members[j].name %>
+                </td>
+                <td>
+
+                  <div class="row">
+                    <div class="col-sm">
+                      <button class="accountBtn" value="" id="deleteBtn"> <a
+                          href="/account/deleteMember/<%= members[j].userId %>?accountId=<%= accountId %>">
+                          &times</a>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% } %>
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+
+<script type="text/javascript">
+  showAlready = function () {
+    return alert("Member Already In Account Group!!! ");
+  }
+  showDefault = function () {
+    return alert("you can not delete default Acccount!!");
+  }
+  if ("<%= msg %>" == "exist") {
+    showAlready();
+  }
+  if ("<%= msg %>" == "default") {
+    showDefault();
+  }
+  if ("<%= msg %>" == "Can not remove admin!") {
+    showAlert("<%= msg %>");
+  } 
+  if ("<%= msg %>" == "Low balance!!") {
+    showAlert("<%= msg %>");
+  } 
+  if ("<%= msg %>" == "User already exist in this account!") {
+    showAlert("<%= msg %>");
+  } 
+  if ("<%= msg %>" == "user not found") {
+    showAlert("<%= msg %>");
+  } 
+
+  function showAlert(msg) {
+    alert(msg);
+  }
+
+</script>
+<%- include ("../partials/footer")%>

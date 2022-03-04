@@ -1,0 +1,19 @@
+<%- include ("../partials/header")%>
+
+<form action="/account/addAccount" method="POST">
+    <label for="accountname">Enter Account Name:</label>
+    <input type="text" name="name" required>
+    <input type="submit" value="submit" name="submit">
+</form>
+
+<script>
+    if("<%= msg %>" == "Account with this name is already exists!") {
+        showAlert("<%= msg %>");
+    };
+
+    function showAlert(msg){
+        return alert(msg);
+    }
+</script>
+
+<%- include ("../partials/footer")%>
