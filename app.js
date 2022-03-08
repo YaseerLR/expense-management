@@ -8,7 +8,9 @@ const userRoutes = require('./routes/user');
 const accountRoutes = require("./routes/account");
 const transactionRoutes = require("./routes/transaction");
 const cookieParser = require("cookie-parser");
-const mongoURI = "mongodb://vimals:yYZdA5S7aXW4dCczcjUyTnZxXfQREBkQ@15.206.7.200:28017/vimals?authSource=admin&ssl=false";
+
+// const mongoURI = "mongodb://vimals:yYZdA5S7aXW4dCczcjUyTnZxXfQREBkQ@15.206.7.200:28017/vimals?authSource=admin&ssl=false";
+const mongoURI = "mongodb://localhost:27017/Expense_Manager";
 
 const db = mongoose.connect(mongoURI, { useNewUrlParser: true })
 .then(() => {
