@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const url = 'mongodb://localhost:27017/expense_manager';
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -9,16 +8,15 @@ const userRoutes = require('./routes/user');
 const accountRoutes = require("./routes/account");
 const transactionRoutes = require("./routes/transaction");
 const cookieParser = require("cookie-parser");
+const mongoURI = "mongodb://vimals:yYZdA5S7aXW4dCczcjUyTnZxXfQREBkQ@15.206.7.200:28017/vimals?authSource=admin&ssl=false";
 
-    
-    
-mongoose.connect(url, {
-    useNewUrlParser : true
-}).then(() => {
-    console.log('Database connected successfully...');
+const db = mongoose.connect(mongoURI, { useNewUrlParser: true })
+.then(() => {
+    console.log("connected ...");
 }).catch(err => {
-    console.log('err in database connection : ', err);
+    console.log("err in database :: ", err);
 });
+
     
     
 app.set('view engine', 'ejs');
