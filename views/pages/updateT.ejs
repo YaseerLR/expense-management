@@ -1,0 +1,213 @@
+<%- include ("../partials/header")%>
+    <section id="home-section">
+        <% var type=transaction.type; %>
+
+            <!-- Modal content -->
+            <div class="modal-content" style="color: black;">
+                <form id="formUPDATE" action="/transaction/updateTransaction/<%= transaction._id%>" method="post">
+                    <h2> Transaction Details :-> </h2>
+
+                    <input type="text" name="id" value="<%= accountId %>" hidden>
+                    <fieldset>
+                        <div class="form-inline text-center" style="width: 350px;">
+                            <input type="radio" onclick="javascript:yesnoCheck('Income');" name="yesno" id="incomeCheck"
+                                value="Income" required />
+                            <label for="income">Income</label>
+                            <input type="radio" onclick="javascript:yesnoCheck('Expense');" name="yesno" id="expenseCheck"
+                                value="Expense" required />
+                            <label for="expense">Expense</label>
+                            <% if (accountDetail.length> 1 ){ %>
+                                <input type="radio" onclick="javascript:yesnoCheck('TransferToAccount');" name="yesno" id="transferCheck"
+                                    value="TransferToAccount" required />
+                                <label for="accountTransfer">AccountTransfer</label>
+                                <% } %>
+
+                                    <div id="incomeDrop" style="display:none">
+                                        <table>
+                                            <tr style="width: 350px; height: 45px;">
+                                                <td style="width: 110px;">
+                                                    <label for="from">From</label>
+                                                </td>
+                                                <td>
+
+                                                    <select id="transaction" name="income" style="width: 220px;"
+                                                        required>
+                                                        <optgroup label="Income">
+                                                            <option value="salary">Salary</option>
+                                                            <option value="saleItem">SaleItem</option>
+                                                            <option value="Other">Other</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <label for="to">To</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" value="<%= name %>" name="incomeTo"
+                                                        style="width: 220px; height: 27px;" readonly>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div id="expenseDrop" style="display: none;">
+                                        <table>
+                                            <tr style="width: 350px; height: 45px;">
+                                                <td style="width: 110px;">
+                                                    <label for="from">From</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" value=" <%= name %> "
+                                                        style="width: 220px; height: 30px;" name="expenseFrom" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="to">To</label>
+                                                </td>
+                                                <td>
+                                                    <select id="transaction" name="expense" style="width: 220px;"
+                                                        required>
+                                                        <optgroup label="Expense">
+                                                            <option value="food">Food</option>
+                                                            <option value="shopping">Shopping</option>
+                                                            <option value="homeexpense">HomeExpense</option>
+                                                            <option value="travaling">Travaling</option>
+                                                            <option value="tour">Tour</option>
+                                                            <option value="rent">Rent</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div id="transferDrop" style="display: none; width: 350px;">
+                                        <table>
+                                            <tr style="width: 350px; height: 45px;">
+                                                <td style="width: 110px;">
+                                                    <label for="from">From</label>
+                                                </td>
+                                                <td>
+                                                    <select id="transaction" name="accountFrom" style="width: 210px;"
+                                                        required>
+                                                        <optgroup label="From AccountTransfer">
+                                                            <option value="<%= accountId%>">
+                                                                <%= name %>
+                                                            </option>
+                                                        </optgroup>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="to">To</label>
+                                                </td>
+                                                <td>
+                                                    <select id="transaction" name="accountTo" style="width: 220px;"
+                                                        required>
+                                                        <optgroup label="To AccountTransfer">
+                                                            <% for (let i=0 ; i < accountDetail.length; i++ ){ %>
+                                                                <%if(accountId !=accountDetail[i].id){ %>
+                                                                    <option value="<%= accountDetail[i]._id%>">
+                                                                        <%= accountDetail[i].name %>
+                                                                    </option>
+                                                                    <% } } %>
+                                                        </optgroup>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                    </div>
+
+                                    <table>
+                                        <tr>
+                                            <td style="width: 110px;">
+                                                <label for="discription">Discription:</label>
+                                            </td>
+                                            <td>
+                                                <textarea id="discription" name="transactionDescription"
+                                                    style="width: 220px; height: 45px;" required><%= transaction.discription%></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="amount"> Amount: </label>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="amount" pattern="[0-9]*" name="Amount"
+                                                    style="width: 220px; height: 30px;" value="<%= transaction.amount%>" required>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <button class="btn btn-outline-success" style="height: auto;" type="submit"
+                                        value="submit" name="submit">Submit</button>
+
+                                    <a href="/transaction/id/<%= accountId %>" class="close btn btn-outline-danger"
+                                        style="height: auto;">Cancle</a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+    </section>
+
+    <script type="text/javascript">
+
+        var TYPEinside = "<%= type %>";;
+        const Income = document.getElementById('incomeCheck');
+        const Expense = document.getElementById('expenseCheck');
+        const Transfer = document.getElementById('transferCheck');
+        window.onload = function () {
+            // document.getElementById('formUPDATE').style.display = 'none';
+            document.getElementById('ifNo').style.display = 'none';
+        }
+        const autoCall = (function yesnoCheck(TYPE) {
+            if ("Income" == TYPEinside) {
+                Income.setAttribute('checked', '')
+                document.getElementById('incomeDrop').style.display = 'block';
+                document.getElementById('expenseDrop').style.display = 'none';
+                document.getElementById('transferDrop').style.display = 'none';
+                document.getElementById('salary').style.display = 'none';
+            }
+            else if (TYPEinside == "Expense") {
+                Expense.setAttribute('checked', '')
+                document.getElementById('expenseDrop').style.display = 'block';
+                document.getElementById('transferDrop').style.display = 'none';
+                document.getElementById('incomeDrop').style.display = 'none';
+            }
+            else if (TYPEinside == "TransferToAccount") {
+                Transfer.setAttribute('checked', '')
+                document.getElementById('transferDrop').style.display = 'block';
+                document.getElementById('expenseDrop').style.display = 'none';
+                document.getElementById('incomeDrop').style.display = 'none';
+            }
+            return yesnoCheck;
+        }());
+
+        function yesnoCheck() {
+    if (document.getElementById('incomeCheck').checked) {
+      document.getElementById('incomeDrop').style.display = 'block';
+      document.getElementById('expenseDrop').style.display = 'none';
+      document.getElementById('transferDrop').style.display = 'none';
+      document.getElementById('salary').style.display = 'none';
+    }
+    else if (document.getElementById('expenseCheck').checked) {
+      document.getElementById('expenseDrop').style.display = 'block';
+      document.getElementById('transferDrop').style.display = 'none';
+      document.getElementById('incomeDrop').style.display = 'none';
+    }
+    else if (document.getElementById('transferCheck').checked) {
+      document.getElementById('transferDrop').style.display = 'block';
+      document.getElementById('expenseDrop').style.display = 'none';
+      document.getElementById('incomeDrop').style.display = 'none';
+    }
+  }
+    </script>
+    <%- include ("../partials/footer")%>

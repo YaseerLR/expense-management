@@ -1,0 +1,440 @@
+/*-------------------------
+     Main Page  
+-------------------------*/
+.main-container {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background: url('../img/EMWallpaper.jpg') top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  background-attachment: scroll;
+  background-position: 50% 50%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* content: "";
+    z-index: 0; */
+}
+
+.main-container::before {
+  content: '';
+  background: rgba(0, 0, 0, 0.534);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/*-------------------------
+    Main Page Navigation 
+-------------------------*/
+
+.main-nav {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.main-nav .navbar-brand {
+  font-size: 42px;
+  font-family: 'Tangerine', serif;
+  text-shadow: 1px 1px 1px #000;
+  margin-left: 20px;
+}
+
+.main-nav .navbar-nav {
+  margin-right: 50px;
+}
+
+.main-nav .nav-item {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  text-align: center;
+  width: 100px;
+  border-bottom: 3px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.main-nav .nav-item:hover {
+  border-bottom: 3px solid chocolate;
+  border-left: 5px solid chocolate;
+  border-right: 1px solid chocolate;
+  border-top: 1px solid chocolate;
+  border-radius: 4px;
+}
+
+/* .py-3 {
+    background: url("../img/bg.jpg") top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+
+/*-------------------------
+    Home Page 
+-------------------------*/
+#home-section {
+  width: 100%;
+  height: 80%;
+  position: relative;
+  padding: 0;
+}
+
+.scrollTransaction, .scrollMember {
+  height: 570px;
+  overflow-y: auto;
+}
+
+#home-section .home-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#home-section {
+  margin: -80px 0 10px 0;
+  margin-top: 0;
+  /* font-size: 42px;
+    font-weight: 700; */
+  line-height: 56px;
+  /* text-transform: uppercase; */
+  color: white;
+}
+
+/* #home-section h2 {
+    color: whitesmoke;
+    margin-bottom: 20px;
+    font-size: 22px;
+} */
+
+#home-section .btn-get-started {
+  background-color: chocolate;
+  color: white;
+  font-size: 20px;
+}
+
+#home-section .btn-get-started:hover {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/*----------------------
+    Sign In/Up Form
+------------------------*/
+
+.signup-form-container {
+  margin-top: 5%;
+}
+.signin-form-container,
+.signup-form-container {
+  width: 400px;
+  position: relative;
+  padding: 0;
+  margin-top: 5%;
+}
+
+.signin-form-container {
+  top: 40px;
+}
+
+#signin-fieldset,
+#signup-fieldset,
+#addMemberForm fieldset {
+  background: rgba(13, 20, 26, 0.8);
+  color: white;
+  padding: 0px 5px 20px 5px;
+}
+
+.username.error,
+.email.error,
+.password.error,
+.member.error,
+.acc.error,
+.editacc.error,
+.transaction.error {
+  color: red;
+}
+
+.sign-legend {
+  color: white;
+  font-weight: bold;
+}
+
+.btn-sign-div {
+  margin-top: 30px;
+}
+
+.btn-sign-div .btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.form-group label {
+  margin-top: 20px;
+}
+
+.form-group input {
+  margin-top: 5px;
+}
+
+.new-user-link,
+.old-user-link {
+  margin-top: 10px;
+}
+
+.new-user-link a,
+.old-user-link a {
+  color: rgb(255, 166, 0);
+}
+
+/*---------------------------
+    Dashboard Nav
+----------------------------*/
+
+.dash_user_dropdown {
+  margin-top: 40px;
+}
+
+.dash_menu_text {
+  margin-top: 40px;
+}
+
+.dash_nav_links {
+  margin-top: 10px;
+}
+
+.dash_icons {
+  height: 20px;
+  width: 20px;
+}
+
+.dash_links {
+  color: chocolate;
+}
+
+.card-display-title {
+  border-bottom: 1px groove black;
+  margin-top: 60px;
+}
+
+.balance-card {
+  width: fit-content;
+  margin-left: 30px;
+  padding: 0;
+}
+
+.balance-card .card-body,
+.balance-card .card-text {
+  padding-bottom: 0;
+}
+
+.dash-card-display {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.openAcc,
+.editAcc,
+.deleteAcc {
+  margin-right: 5px;
+}
+
+/*-------------------------
+  Shared Account Info Page 
+-------------------------*/
+#sharedInfoBody {
+  width: 99vw;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/bg_image.jpg') top center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+.sharedName {
+  background-color: black;
+  color: white;
+}
+
+.backBtn {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+[class*='col-'] {
+  float: left;
+  padding: 15px;
+}
+
+.member-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin-top: 52px;
+  margin-left: 60px;
+  width: 400px;
+  height: fit-content;
+}
+
+.add-member-form-container {
+  margin-top: 100px;
+}
+
+.transaction-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin-top: 50px;
+  margin-left: 60px;
+  width: 400px;
+}
+
+/* .transaction-table {
+    width: 1000px;
+} */
+
+.transaction-table tr {
+  color: white;
+}
+
+.transaction-table tr:hover {
+  background-color: gray;
+}
+
+.transaction-table th {
+  background-color: rgb(143, 89, 44);
+  /* color: black; */
+}
+
+table.table td a.edit {
+  color: #ffc107;
+}
+
+table.table td a.edit:hover {
+  color: chocolate;
+}
+
+table.table td a.delete {
+  color: #f44336;
+}
+
+table.table td a.delete:hover {
+  color: #8b0f06;
+}
+
+table.table td button.delete,
+button.edit {
+  border: none;
+  background-color: transparent;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {
+    width: 8.33%;
+  }
+  .col-s-2 {
+    width: 16.66%;
+  }
+  .col-s-3 {
+    width: 25%;
+  }
+  .col-s-4 {
+    width: 33.33%;
+  }
+  .col-s-5 {
+    width: 41.66%;
+  }
+  .col-s-6 {
+    width: 50%;
+  }
+  .col-s-7 {
+    width: 58.33%;
+  }
+  .col-s-8 {
+    width: 66.66%;
+  }
+  .col-s-9 {
+    width: 75%;
+  }
+  .col-s-10 {
+    width: 83.33%;
+  }
+  .col-s-11 {
+    width: 91.66%;
+  }
+  .col-s-12 {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {
+    width: 8.33%;
+  }
+  .col-2 {
+    width: 16.66%;
+  }
+  .col-3 {
+    width: 25%;
+  }
+  .col-4 {
+    width: 33.33%;
+  }
+  .col-5 {
+    width: 41.66%;
+  }
+  .col-6 {
+    width: 50%;
+  }
+  .col-7 {
+    width: 58.33%;
+  }
+  .col-8 {
+    width: 66.66%;
+  }
+  .col-9 {
+    width: 75%;
+  }
+  .col-10 {
+    width: 83.33%;
+  }
+  .col-11 {
+    width: 91.66%;
+  }
+  .col-12 {
+    width: 100%;
+  }
+}
+
+.add-transaction-container {
+  background-color: black;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 40px;
+  padding-bottom: 10px;
+}
+
+.add-transaction-container .mb-3 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.underlineA {
+    color: whitesmoke;
+  text-decoration: none;
+}
+
+.underlineA:hover {
+    color: rgb(123, 123, 241);
+  text-decoration: underline;
+}

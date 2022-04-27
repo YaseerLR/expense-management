@@ -1,72 +1,88 @@
 <%- include ("../partials/header")%>
 
-  <div class="container text-white">
-    <nav class="navbar navbar-light bg-light justify-content-between">
-
-      <label class="text-dark" for="balance">Balance : <%= balance %></label>
-
-      
-      
-      <form class="navform" method="GET" action="/account/addAccount"><a href=""><button class="transaction btn btn-outline-warning my-2 my-sm-0" type="submit">Add Account</button></a></form>    
-    </nav>
-    <table class="table" style="width: 80%; margin: auto; background-color: white;">
-      <thead class="thead-dark">
-
-        <h1 style="text-decoration:underline "> Account Details </h1>
-        <tr>
-          <th scope="col" name="accountName">AccountName</th>
-          <th scope="col" name="balance">Balance</th>
-          <th scope="col" name="action"> Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for ( let i=0; i < account.length; i++) { %>
+  <section id="home-section">
+    <div class="container">
+      <nav class="navbar justify-content-between">
+        <h1 class="mx-2" style="color: rgba(255, 72, 72, 0.685); text-decoration: underline;"> Account Details :</h1>
+        <button class="transaction btn btn-outline-warning my-2 my-sm-0" onclick='addAcount()'
+          type="submit">AddAccount</button>
+      </nav>
+      <table class="table" style="width: 80%; margin: auto; color: white; opacity: 0.8;">
+        <thead class="thead-dark" style="font-size: 24px; text-decoration: underline; color: rgba(83, 255, 189, 0.733);">
           <tr>
-            <td> <a href="http://localhost:3000/transaction/id/<%= account[i]._id%>">
-                <%= account[i].name %>
-              </a></form></a></td>
-            <td>
-              <%= account[i].balance %>
-            </td>
-            <td>
-              <div class="row">
-                <div class="col-sm">
-                  <button class="accountBtn" value="" id="updateBtn"><a href="/account/updateAccount/<%= account[i]._id %>">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            <th scope="col" name="accountName">AccountName</th>
+            <th scope="col" name="balance">Balance</th>
+            <th scope="col" name="action" class="text-center" style="width: 200px;"> Action</th>
+          </tr>
+        </thead>
+        <tbody style="font-size: 20px;">
+          <% for ( let i=0; i < account.length; i++) { %>
+            <tr>
+              <td > <a class="underlineA" href="http://localhost:3000/transaction/id/<%= account[i]._id%>">
+                  <%= account[i].name %>
+                </a></td>
+              <td style="color: rgb(255, 255, 255);">
+                <%= account[i].balance %>
+              </td>
+              <td style="margin: auto;">
+                <div class="row">
+                  <div class="col-sm btn  my-2 my-sm-0 ">
+                    <a onclick='OpenPrompt("<%= account[i].id %>", "<%= account[i].name %>")'>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgb(49, 255, 38)"
                         class="bi bi-pen" viewBox="0 0 16 16">
                         <path
                           d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                       </svg></a>
-                  </button>
-                </div>
-                <div class="col-sm">
-                  <button class="accountBtn" value="" id="deleteBtn"> <a onclick="return confirm(`are you sure want to delete this account?`)"
-                      href="/account/deleteAccount/<%= account[i]._id %>">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-trash" viewBox="0 0 16 16">
+                    <a style="padding:0 0px 0 20px "
+                      onclick="return confirm(`Are You Sure You Want To Delete Account?`)"
+                      href="/account/deleteAccount/<%= account[i].id %>">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ff3838" class="bi bi-trash"
+                        viewBox="0 0 16 16">
                         <path
                           d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                         <path fill-rule="evenodd"
                           d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                       </svg></a>
-                  </button>
+                  </div>
                 </div>
-              </div>
-            </td>
-          </tr>
-          <% } %>
-      </tbody>
-    </table>
-  </div>
+              </td>
+            </tr>
+            <% } %>
+        </tbody>
+      </table>
+    </div>
+    </section>
 
-  <script>
-    showAlert = function() {
-      return alert("you can not delete default Acccount!!");
-    }
-    console.log("msg ::: <><>", "<%= msg %>")
-    if("<%= msg %>"=="default") 
-    {  
-      showAlert();
-    }
-  </script>
-  <%- include ("../partials/footer")%>
+
+    <script type="text/javascript">
+      alertMessage = function (msg) {
+        return alert(msg);
+      }
+      promptBox = function (account) {
+
+        return prompt(account.name)
+      }
+      OpenPrompt = function (id, name) {
+        let newName = prompt("Enter Name For Update", name);
+        if (newName) {
+          window.location.href = `/account/updateAccount?id=${id}&name=${newName}`
+        }
+        return;
+      }
+      addAcount = function () {
+        let addAccount = prompt("Enter New Account Name");
+        if (addAccount) {
+          window.location.href = `/account/addAccount?name=${addAccount}`
+        }
+      }
+      if ("<%= msg %>" == "default") {
+        alertMessage("You can not delete default Acccount!!");
+      }
+      else if ("<%= msg %>" == "noAdmin") {
+        alertMessage("You can not delete Acccount because you are not admin of this account!!");
+      }
+      else if ("<%= msg %>" == "accountUpdate") {
+        alertMessage("Update AccountName Successfully In Account Group!!");
+      }
+    </script>
+    <%- include ("../partials/footer")%>

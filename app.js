@@ -1,45 +1,55 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+const url = 'mongodb://localhost:27017/expenseManager';
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 const ejs = require('ejs');
-const userRoutes = require('./routes/user');
-const accountRoutes = require("./routes/account");
-const transactionRoutes = require("./routes/transaction");
-const cookieParser = require("cookie-parser");
+const path = require('path')
 
-// const mongoURI = "mongodb://vimals:yYZdA5S7aXW4dCczcjUyTnZxXfQREBkQ@15.206.7.200:28017/vimals?authSource=admin&ssl=false";
-const mongoURI = "mongodb://localhost:27017/Expense_Manager";
+const userRoutes = require('./routers/users');
+const accountRoutes = require('./routers/account');
+const trasactionRoutes = require('./routers/transaction');
 
-const db = mongoose.connect(mongoURI, { useNewUrlParser: true })
-.then(() => {
-    console.log("connected ...");
+mongoose.connect(url, {
+    useNewUrlParser : true
+}).then(() => {
+    console.log('Database connected successfully...');
 }).catch(err => {
-    console.log("err in database :: ", err);
+    console.log('err in database connection : ', err);
 });
-
-    
     
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '/assets')));  
+app.use(cookieParser())
+
 app.use('/user', userRoutes);
 app.use('/account', accountRoutes);
-app.use('/transaction', transactionRoutes);
-app.use("/", async function(req, res) {
+app.use('/transaction', trasactionRoutes);
+
+app.get("/web", async function home (req, res) {
     try {
-        res.status(200).render("pages/web")
+        res.render("pages/web");
     } catch (err) {
         return res.status(400).json({
             msg : 'Something went wrong!'
         });
     }
-});
+})
 
-    
+app.get("/home", async function home (req, res) {
+    try {
+        res.render("pages/home");
+    } catch (err) {
+        return res.status(400).json({
+            msg : 'Something went wrong!'
+        });
+    }
+})
     
 app.listen(port, () => {
-    console.log('Listenint to the port :', port);
+    console.log('Listening to the port :', port);
 });

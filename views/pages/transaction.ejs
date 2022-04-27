@@ -1,158 +1,433 @@
 <%- include ("../partials/header")%>
+  <section id="home-section">
+    <div class="float-container">
+      <nav class="navbar  mx-5 ">
+        <!-- <label class="text-light" for="balance" style="font-size:20px">Balance: - > <# % = account[0].balance%></label> -->
 
-  <div class="container text-white">
-    <nav class="navbar navbar-light bg-light justify-content-between">
-      <label class="text-dark" for="balance">Balance : <%= balance %></label>
 
-      <a class="navbar-brand">Transaction Details</a>
+      </nav>
+      <div class="row d-flex justify-content-center h-100">
+        <div class="scrollMember col-lg-3 col-xl-3">
+          <table class="table text-light" style="width: 100%; margin: 0; ">
+            <thead class="thead-dark" style="width: 400px;">
+              <% for ( let i=0; i < account.length ; i++) { %>
+                <tr>
+                  <td>
+                    <h1 class="mx-2" style="color: rgba(255, 72, 72, 0.685); text-decoration: underline;"> Members:
+                    </h1>
+                  </td>
+                  <td class="text-center">
+                    <button id="myBtn" class="transaction btn btn-outline-warning my-2 my-sm-0" type="submit"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                      </svg></button>
+                  </td>
+                </tr>
+                <tr style="font-size: 24px; text-decoration: underline; color: rgba(83, 255, 189, 0.733);">
+                  <th scope="col" name="type">Name</th>
+                  <th class="text-center" scope="col" name="type" style="font-size: 35px;">&times;</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr style="font-size: 20px;">
+                <% for (let j=0; j< account[i].members.length ; j++) {%>
+                  <td>
+                    <%=account[i].members[j].name %>
+                  </td>
+                  <td class="text-center" style="margin-left:50%">
 
-      <div class="row">
-        <div class="col-sm">
-          <form class="navform" method="GET" action="/account/addMember/accountId/<%= accountId %>"><a href=""><button
-            class="transaction btn btn-outline-warning my-2 my-sm-0" type="submit">Add Member</button></a></form>
+                    <div class="row d-flex justify-content-center"><a
+                        onclick="return confirm(`Are You Sure You Want To Delete?`)"
+                        href="http://localhost:3000/account/deleteMember/<%= account[i].members[j]._id %>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="RED" class="bi bi-trash"
+                          viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg></a>
+                    </div>
+                  </td>
+              </tr>
+              <% } %>
+                <% } %>
+            </tbody>
+          </table>
         </div>
-
-        <div class="">
-          <form class="navform" method="GET" action="/transaction/addTransaction/id/<%= accountId %>"><a href=""><button
-            class="transaction btn btn-outline-warning my-2 my-sm-0" type="submit">Add Transaction</button></a></form>
-        </div>
-      </div>
-      
-    </nav>
-
-
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-7 col-xl-8">
-        <table class="table" style="width: 100%; margin: auto; background-color: rgba(34, 189, 255, 0.529);">
-          <thead class="thead-dark">
-
-            <h1 style="text-decoration: underline;"> Transactions</h1>
-            <tr>
-              <th scope="col" name="refId">TransactionID</th>
-              <th scope="col" name="typeCategory">Type</th>
-              <th scope="col" name="amount">Amount</th>
-              <th scope="col" name="action">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% for ( let i=0; i < transaction.length; i++) { %>
+        <div class="scrollTransaction col-lg-7 col-xl-8" style="border-style:hidden hidden hidden solid;">
+          <table class="table text-light " style="width: 100%; margin-top : 0; ">
+            <thead class="thead-dark ">
               <tr>
-                <td>
-                  <%= transaction[i].account %>
+                <td colspan="2">
+                  <h1 class="mx-2" style="color: rgba(255, 72, 72, 0.685); text-decoration: underline;"> Transaction
+                    Details :
+                  </h1>
                 </td>
-                <td>
-                  <%= transaction[i].type %>
+                <td colspan="2">
+                  <h5 style="color: rgba(255, 0, 255, 0.685); text-decoration: underline;">
+                    Balance: - > <%= account[0].balance%>
+                  </h5>
                 </td>
-                <td>
-                  <%= transaction[i].amount %>
+                <td class="text-center">
+                  <!-- <form class="navform" method="GET" action="/transaction/addTransaction/id/<%#= accountId %>">
+                    <a href=""> -->
+                  <button id="transactionbtn" class="transaction btn btn-outline-warning my-2 my-sm-0"
+                    type="submit">AddTransaction</button>
+                  <!-- </a></form> -->
                 </td>
-                <td>
-                  <div class="row">
-                    <div class="col-sm">
-                      <button class="accountBtn" value="" id="updateBtn"><a
-                          href="/transaction/editTransaction/<%= transaction[i]._id %>">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              </tr>
+              <tr class="text-center"
+                style="font-size: 24px; text-decoration: underline; color: rgba(83, 255, 189, 0.733);">
+                <th scope="col" name="type">Type</th>
+                <th scope="col" name="refId">TransactionID</th>
+                <th scope="col" name="category">Discription</th>
+                <th scope="col" name="amount">Amount</th>
+                <th scope="col" name="action">Action</th>
+              </tr>
+            </thead>
+            <tbody class="p-4" style="font-size: 20px; overflow-y: scroll;">
+              <% for ( let i=0; i < transaction.length; i++) { %>
+                <tr class="text-center">
+                  <td>
+                    <%= transaction[i].type %>
+                  </td>
+                  <td>
+                    <%= transaction[i]._id %>
+                  </td>
+                  <td>
+                    <%= transaction[i].discription %>
+                  </td>
+                  <td>
+                    <%= transaction[i].amount %>
+                  </td>
+                  <td>
+
+                    <div class="row">
+                      <div class="col-sm btn  my-2 my-sm-0 ">
+
+                        <a href="http://localhost:3000/transaction/updateTransaction/<%= transaction[i].id %>">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0366fc  "
                             class="bi bi-pen" viewBox="0 0 16 16">
                             <path
                               d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                           </svg></a>
-                      </button>
-                    </div>
-                    <div class="col-sm">
-                      <button class="accountBtn" value="" onclick="confirm('Are you sure want to delete?')" id="deleteBtn"> <a
-                          href="/transaction/deleteTransaction/<%= transaction[i]._id %>">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+
+                        <a style="padding:0 0px 0 20px "
+                          onclick="return confirm(`Are You Sure You Want To Delete Transaction?`)"
+                          href="http://localhost:3000/transaction/deleteTransaction/id/<%= transaction[i].id %>">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ff3838"
                             class="bi bi-trash" viewBox="0 0 16 16">
                             <path
                               d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                             <path fill-rule="evenodd"
                               d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                           </svg></a>
-                      </button>
+
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-              <% } %>
-          </tbody>
-        </table>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+        </div>
+
       </div>
+    </div>
 
-      <!-- mamber's code will be here. -->
+    <!-- The Modal for member -->
 
-      <div class="col-lg-2 col-xl-3">
-        <table class="table text-center" style="width: 80%; margin: auto; background-color: rgba(34, 189, 255, 0.529);">
-          <thead class="thead-dark">
-           
+    <div id="myModal" class="modal">
 
-              <h1 style="text-decoration: underline;"> Members</h1>
-              <tr>
-                <th scope="col" name="refId">memberName</th>
-                <th scope="col" name="action">&times</th>
-              </tr>
-          </thead>
-          <tbody>
+      <!-- Modal content -->
+      <div class="modal-content" style="color: black;">
+        <form class="text-center form-group" action="/account/addMember" method="post">
+          <table class="text-center">
+            <thead colspan="2">
+              <h6>ENTER MEMBER DETAILS</h6>
+              <input type="text" name="id" value="<%= accountId %>" hidden>
+            </thead>
             <tr>
-              <% for (let j=0; j< members.length ; j++) {%>
-                <td>
-                  <%= members[j].name %>
-                </td>
-                <td>
-
-                  <div class="row">
-                    <div class="col-sm">
-                      <button class="accountBtn" value="" id="deleteBtn"> <a
-                          href="/account/deleteMember/<%= members[j].userId %>?accountId=<%= accountId %>">
-                          &times</a>
-                      </button>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <% } %>
-
-
-          </tbody>
-        </table>
+              <td>
+                <label for="membername">Enter Member Name:</label>
+              </td>
+              <td>
+                <input style="height: 30px;" type="text" name="mName" required><br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="memberemail">Enter Member email:</label>
+              </td>
+              <td>
+                <input style="height: 30px;" type="email" name="mEmail" required><br>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="height: 30px;">
+                <button class="btn btn-outline-success" style="height: auto;" type="submit" value="submit"
+                  name="submit">Submit</button>
+                <a href="/transaction/id/<%= accountId %>" class="close btn memberbtn btn-outline-danger"
+                  style="height: auto;" type="submit" value="submit" name="submit">Cancle</a>
+              </td>
+            </tr>
+          </table>
+        </form>
       </div>
-
-
 
     </div>
 
+    <!-- The Modal for add Transaction -->
 
-  </div>
+    <div id="transactionModel" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content" style="color: black;">
+        <form action="/transaction/addTransaction" method="post">
+          <h2> Transaction Details :-> </h2>
+
+          <label for="Transaction">Transaction Type:</label>
+          <input type="text" name="id" value="<%= accountId %>" hidden>
+          <fieldset>
+            <div class="form-inline text-center" style="width: 350px;">
+              <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="incomeCheck" value="Income"
+                required />
+              <label for="income">Income</label>
+              <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="expenseCheck" value="Expense"
+                required />
+              <label for="expense">Expense</label>
+              <% if (accountDetail.length> 1 ){ %>
+                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="transferCheck"
+                  value="TransferToAccount" required />
+                <label for="accountTransfer">AccountTransfer</label>
+                <% } %>
+                  <div id="incomeDrop" style="display: none;">
+                    <table>
+                      <tr style="width: 350px; height: 45px;">
+                        <td style="width: 110px;">
+                          <label for="from">From</label>
+                        </td>
+                        <td>
+
+                          <select id="transaction" name="income" style="width: 220px;" required>
+                            <optgroup label="Income">
+                              <option value="salary">Salary</option>
+                              <option value="saleItem">SaleItem</option>
+                              <option value="Other">Other</option>
+                            </optgroup>
+                          </select>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <label for="to">To</label>
+                        </td>
+                        <td>
+                          <input type="text" value="<%= name %>" name="incomeTo" style="width: 220px; height: 27px;"
+                            readonly>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div id="expenseDrop" style="display: none;">
+                    <table>
+                      <tr style="width: 350px; height: 45px;">
+                        <td style="width: 110px;">
+                          <label for="from">From</label>
+                        </td>
+                        <td>
+                          <input type="text" value=" <%= name %> " style="width: 220px; height: 30px;"
+                            name="expenseFrom" readonly>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label for="to">To</label>
+                        </td>
+                        <td>
+                          <select id="transaction" name="expense" style="width: 220px;" required>
+                            <optgroup label="Expense">
+                              <option value="food">Food</option>
+                              <option value="shopping">Shopping</option>
+                              <option value="homeexpense">HomeExpense</option>
+                              <option value="travaling">Travaling</option>
+                              <option value="tour">Tour</option>
+                              <option value="rent">Rent</option>
+                            </optgroup>
+                          </select>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <% if (accountDetail.length> 1 ){ %>
+                    <div id="transferDrop" style="display: none;">
+                      <table>
+                        <tr style="width: 350px; height: 45px;">
+                          <td style="width: 110px;">
+                            <label for="from">From</label>
+                          </td>
+                          <td>
+                            <select id="transaction" name="accountFrom" style="width: 210px;" required>
+                              <!-- <input type="text" name="" id=""> -->
+                              <optgroup label="From AccountTransfer">
+                                <% for (let i=0 ; i < account.length; i++ ){%>
+                                  <% if(accountId==account[i]._id){ %>
+                                    <option value="<%= account[i]._id%>">
+                                      <%= account[i].name %>
+                                    </option>
+                                    <% } %>
+                                      <% } %>
+                              </optgroup>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="to">To</label>
+                          </td>
+                          <td>
+                            <select id="transaction" name="accountTo" style="width: 220px;" required>
+                              <optgroup label="To AccountTransfer">
+                                <% for (let i=0 ; i < accountDetail.length; i++ ){ %>
+                                  <%if(accountId !=accountDetail[i].id){ %>
+                                    <option value="<%= accountDetail[i]._id%>">
+                                      <%= accountDetail[i].name %>
+                                    </option>
+                                    <% } } %>
+                              </optgroup>
+                            </select>
+                          </td>
+                        </tr>
+                      </table>
+
+                    </div>
+                    <% } %>
+                      <table>
+                        <tr>
+                          <td style="width: 110px;">
+                            <label for="discription">Discription:</label>
+                          </td>
+                          <td>
+                            <textarea id="discription" name="transactionDescription" style="width: 220px; height: 45px;"
+                              required></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="amount"> Amount: </label>
+                          </td>
+                          <td>
+                            <input type="text" id="amount" pattern="[0-9]*" name="Amount"
+                              style="width: 220px; height: 30px;" required>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <button class="btn btn-outline-success" style="height: auto;" type="submit" value="submit"
+                        name="submit">Submit</button>
+
+                      <a href="/transaction/id/<%= accountId %>" class="close btn btn-outline-danger"
+                        style="height: auto;">Cancle</a>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    var transactionModel = document.getElementById("transactionModel");
+
+    // Get the button that opens the modal
+    var memberbtn = document.getElementById("myBtn");
+    var transactionbtn = document.getElementById("transactionbtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    var transactionspan = document.getElementsByClassName("transactionSpan")[0];
+
+    // When the user clicks the button, open the modal 
+    memberbtn.onclick = function () {
+      modal.style.display = "block";
+    }
+    transactionbtn.onclick = function () {
+      transactionModel.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+    transactionspan.onclick = function () {
+      transactionModel.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
 
-<script type="text/javascript">
-  showAlready = function () {
-    return alert("Member Already In Account Group!!! ");
-  }
-  showDefault = function () {
-    return alert("you can not delete default Acccount!!");
-  }
-  if ("<%= msg %>" == "exist") {
-    showAlready();
-  }
-  if ("<%= msg %>" == "default") {
-    showDefault();
-  }
-  if ("<%= msg %>" == "Can not remove admin!") {
-    showAlert("<%= msg %>");
-  } 
-  if ("<%= msg %>" == "Low balance!!") {
-    showAlert("<%= msg %>");
-  } 
-  if ("<%= msg %>" == "User already exist in this account!") {
-    showAlert("<%= msg %>");
-  } 
-  if ("<%= msg %>" == "user not found") {
-    showAlert("<%= msg %>");
-  } 
+  <script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('ifYes').style.display = 'none';
+      document.getElementById('ifNo').style.display = 'none';
+    }
+    function yesnoCheck() {
 
-  function showAlert(msg) {
-    alert(msg);
-  }
+      if (document.getElementById('expenseCheck').checked) {
+        console.log('inside daybyeufybre ::: ', document.getElementById('incomeDrop').style.display);
+        document.getElementById('incomeDrop').style.display = 'none';
+        document.getElementById('expenseDrop').style.display = 'block';
+        document.getElementById('transferDrop').style.display = 'none';
+      }
+      else if (document.getElementById('incomeCheck').checked) {
+        document.getElementById('expenseDrop').style.display = 'none';
+        document.getElementById('incomeDrop').style.display = 'block';
+        document.getElementById('transferDrop').style.display = 'none';
+      }
+      else if (document.getElementById('transferCheck').checked) {
+        document.getElementById('transferDrop').style.display = 'block';
+        document.getElementById('expenseDrop').style.display = 'none';
+        document.getElementById('incomeDrop').style.display = 'none';
+      }
+    }
+  </script>
 
-</script>
-<%- include ("../partials/footer")%>
+
+  <script type="text/javascript">
+    defaultMember = function () {
+      return alert("This is a creater of the account they can not be remove!! ");
+    }
+    alertMessage = function (msg) {
+      return alert(msg);
+    }
+    if ("<%= msg %>" == "already") {
+      alertMessage("Member Already In Account Group!!! ");
+    } else if ("<%= msg %>" == "default") {
+      alertMessage("You Can't Delete Or Remove Admin User From Account!!");
+    } else if ("<%= msg %>" == "updateTransaction") {
+      alertMessage("your Transaction was updated");
+    } else if ("<%= msg %>" == "already") {
+      alertMessage("Member Already In Account Group!! ");
+    } else if ("<%= msg %>" == "deleted") {
+      alertMessage("Member Removed From Account Group!! ");
+    } else if ("<%= msg %>" == "lowBalance" || "<%= msg %>" == "transferUnavailable") {
+      alertMessage("Your Account Have Low Balance For Your Expense OR Account Transfer");
+    } else if ("<%= msg %>" == "noEdit") {
+      alertMessage("You can Not Modified This because Of low balance");
+    } else if ("<%= msg %>" == "updateTransaction") {
+      alertMessage("Your Transaction Modified SuccessFully");
+    }
+    else if ("<%= msg %>" == "noDelete") {
+      alertMessage("Your Transaction can't delete because of LowBalance Issue");
+    }
+  </script>
+  <%- include ("../partials/footer")%>

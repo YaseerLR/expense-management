@@ -1,28 +1,38 @@
 const mongoose = require("mongoose");
 
 const accountSchema = mongoose.Schema({
-    userId : {
-        type : mongoose.Schema.Types.ObjectId, ref : "User", required : true
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, ref: "User", required: true
     },
-    name : {
-        type : String,
-        required : true
+    name: {
+        type: String,
+        required: true
     },
-    balance : {
-        type : Number,
-        default : 0
+    balance: {
+        type: Number,
+        default: 0
     },
     // members : {
     //     type : Array,
     //     default : [ { type : mongoose.Schema.Types.ObjectId, ref : "User" } ]
     // },
-    members : {
-        type : Array,
-        default : []
-    },
-    isDefault : {
-        type : Boolean,
-        default : false
+    members: [{
+        name: {
+            type: String
+        },
+        email: {
+            type: String,
+            required: true,
+            match: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false
+        }
+    }],
+    isDefault: {
+        type: Boolean,
+        default: false
     }
 });
 
