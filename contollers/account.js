@@ -9,7 +9,7 @@ const e = require('express');
  * @param {*} req
  * @param {*} res
  * @description getAllAccount Detail by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function getAllAccount(req, res) {
   try {
@@ -34,7 +34,7 @@ async function getAllAccount(req, res) {
  * @param {*} req
  * @param {*} res
  * @description getAddAccount Detail by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function addAccount(req, res) {
   try {
@@ -59,7 +59,7 @@ async function addAccount(req, res) {
  * @param {*} req
  * @param {*} res
  * @description UpdateAccountName Detail by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function updateAccountName(req, res) {
   try {
@@ -85,7 +85,7 @@ async function updateAccountName(req, res) {
  * @param {*} req
  * @param {*} res
  * @description getUpdateAccount Detail by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function getAddMember(req, res) {
   try {
@@ -103,7 +103,7 @@ async function getAddMember(req, res) {
  * @param {*} req
  * @param {*} res
  * @description addMember Detail by using patch
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function addMember(req, res) {
   try {
@@ -154,7 +154,7 @@ async function addMember(req, res) {
  * @param {*} req
  * @param {*} res
  * @description deleteAccount Detail by using delete
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function deleteMember(req, res) {
   try {
@@ -187,7 +187,10 @@ async function deleteMember(req, res) {
         msg: 'deleted',
       });
     } else {
+      const { account } = res.locals;
       res.render('pages/transaction', {
+        accoundDetail: account,
+        name: memberData.name,
         transaction: transactions,
         accountId: data._id,
         account: memberData,
@@ -205,7 +208,7 @@ async function deleteMember(req, res) {
  * @param {*} req
  * @param {*} res
  * @description deleteAccount Detail by using delete
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function deleteAccount(req, res) {
   try {

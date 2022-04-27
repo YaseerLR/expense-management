@@ -8,7 +8,7 @@ const { parse } = require('dotenv');
  * @param {*} req
  * @param {*} res
  * @description getAllTransaction Detail by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function getAllTransaction(req, res) {
   try {
@@ -43,7 +43,7 @@ async function getAllTransaction(req, res) {
  * @param {*} req
  * @param {*} res
  * @description addtransaction Detail By using post
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function addTransaction(req, res) {
   try {
@@ -128,7 +128,7 @@ async function addTransaction(req, res) {
  * @param {*} req
  * @param {*} res
  * @description getUpdateTransaction Detail by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function getUpdateTransaction(req, res) {
   try {
@@ -155,7 +155,7 @@ async function getUpdateTransaction(req, res) {
  * @param {*} req
  * @param {*} res
  * @description updateTransaction Detail by using patch
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function updateTransaction(req, res) {
   try {
@@ -246,7 +246,7 @@ async function updateTransaction(req, res) {
  * @param {*} req
  * @param {*} res
  * @description deleteTransaction Detail by using delete
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function deleteTransaction(req, res) {
   try {

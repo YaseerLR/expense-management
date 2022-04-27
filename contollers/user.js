@@ -9,7 +9,7 @@ const { cookie } = require('express/lib/response');
  * @param {*} req
  * @param {*} res
  * @description home forSignUp by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function getsignup(req, res) {
     try {
@@ -26,7 +26,7 @@ async function getsignup(req, res) {
  * @param {*} req
  * @param {*} res
  * @description signUp for user by using post
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function signUp(req, res) {
     try {
@@ -76,7 +76,7 @@ async function signUp(req, res) {
  * @param {*} req
  * @param {*} res
  * @description show userCreated in user by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function getlogin(req, res) {
     try {
@@ -93,7 +93,7 @@ async function getlogin(req, res) {
  * @param {*} req
  * @param {*} res
  * @description user Login in user by using post
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function loginUser(req, res) {
     try {
@@ -141,7 +141,7 @@ async function loginUser(req, res) {
  * @param {*} req
  * @param {*} res
  * @description logout user by using delete to remove token
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function logout(req, res) {
     try {
@@ -158,7 +158,7 @@ async function logout(req, res) {
  * @param {*} req
  * @param {*} res
  * @description user delete in user by using get
- * @author `DARSHAN ZignutsTechnolab`
+ * @author `Vimal Solanki`
  */
 async function deleteUser(req, res) {
     try {
